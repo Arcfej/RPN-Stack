@@ -42,6 +42,13 @@ public class LinkedList
         head = newOne;
     }
 
+    /**
+     * Delete a node from the start of the list
+     */
+    public void  deleteFromStart() {
+        head = head.getNext();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
