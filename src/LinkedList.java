@@ -27,7 +27,16 @@ public class LinkedList
     	return (head == null);
     }
 
-     /**
+    /**
+     * Get the head of the list
+     *
+     * @return The head of the list
+     */
+    public ListNode getHead() {
+        return head;
+    }
+
+    /**
      * Add a new node at the start of a list
      * 
      * @param number The number to add to the list
