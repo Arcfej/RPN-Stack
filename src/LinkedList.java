@@ -41,27 +41,25 @@ public class LinkedList
         
         head = newOne;
     }
- 
-    /**
-     * Print the list, starting at head
-     */
-     public void printList()
-     {
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
         ListNode marker = head;
 
         if (isListEmpty())
         {
-        	System.out.println(EMPTY_LIST_ERROR_MESSAGE);
-        	return;
+        	return EMPTY_LIST_ERROR_MESSAGE;
         }
-        
-    	// Note could also use a for loop here
-        System.out.println("The list contains:");    
+
+        stringBuilder.append("The list contains:\n");
         while (marker != null)
         {
-        	System.out.println(marker);
-	        marker=marker.getNext();
+        	stringBuilder.append(marker).append("\n");
+	        marker = marker.getNext();
         }
+        return stringBuilder.toString();
     }
 
    /**
