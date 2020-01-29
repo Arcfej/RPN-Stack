@@ -54,6 +54,6 @@ public class ListNode
 
     @Override
     public String toString() {
-        return "This node contains the number: " + number;
+        return String.valueOf(number);
     }
 }

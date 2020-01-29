@@ -46,7 +46,9 @@ public class LinkedList
      * Delete a node from the start of the list
      */
     public void  deleteFromStart() {
-        head = head.getNext();
+        if (head != null) {
+            head = head.getNext();
+        }
     }
 
     @Override
@@ -63,7 +65,7 @@ public class LinkedList
         stringBuilder.append("The list contains:\n");
         while (marker != null)
         {
-        	stringBuilder.append(marker).append("\n");
+        	stringBuilder.append(marker).append(", ");
 	        marker = marker.getNext();
         }
         return stringBuilder.toString();
