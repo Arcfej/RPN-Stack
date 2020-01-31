@@ -39,4 +39,33 @@ public class Stack {
             return last;
         }
     }
+
+    /**
+     * Return true if the stack is empty
+     *
+     * @return true if the stack is empty
+     */
+    public boolean isEmpty() {
+        return stack.isListEmpty();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        ListNode marker = stack.getHead();
+
+        if (stack.isListEmpty())
+        {
+            return LinkedList.EMPTY_LIST_ERROR_MESSAGE;
+        }
+
+        stringBuilder.append("The list contains:\n");
+        while (marker != null)
+        {
+            stringBuilder.append(marker).append(", ");
+            marker = marker.getNext();
+        }
+        return stringBuilder.toString();
+    }
 }

@@ -18,9 +18,11 @@ public class LinkedList
     {
         head = null;
     }
-    
+
     /**
-     * Returns true if the list is empty
+     * Return true if the list is empty
+     *
+     * @return true if the list is empty
      */
     public boolean isListEmpty()
     {
