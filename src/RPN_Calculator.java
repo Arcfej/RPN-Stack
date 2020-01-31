@@ -92,6 +92,12 @@ public class RPN_Calculator {
             n2 = numbers.pop();
             n1 = numbers.pop();
         } catch (EmptyStackException e) {
+            switch (operator) {
+                case "+": case "-": case "*": case "/":
+                    break;
+                default:
+                    throw new InvalidExpressionException(InvalidExpressionException.INVALID_OPERATOR_MESSAGE + operator);
+            }
             throw new InvalidExpressionException(InvalidExpressionException.TOO_FEW_NUMBER_MESSAGE);
         }
 
