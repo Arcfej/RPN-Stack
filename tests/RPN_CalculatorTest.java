@@ -9,7 +9,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate(""),
+                () -> calculator.calculate("", " "),
                 InvalidRPNExpressionException.EMPTY_EXPRESSION_MESSAGE
         );
     }
@@ -18,7 +18,7 @@ class RPN_CalculatorTest {
     void calculateAddition() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("4 6 +"), 10);
+            assertEquals(calculator.calculate("4 6 +", " "), 10);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -28,7 +28,7 @@ class RPN_CalculatorTest {
     void calculateWithNegativeNumber() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("4 -6 +"), -2);
+            assertEquals(calculator.calculate("4 -6 +", " "), -2);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -39,7 +39,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("4 6 2 +"),
+                () -> calculator.calculate("4 6 2 +", " "),
                 InvalidRPNExpressionException.TOO_MUCH_NUMBER_MESSAGE + "4 6 2 +"
         );
     }
@@ -49,7 +49,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("4 +"),
+                () -> calculator.calculate("4 +", " "),
                 InvalidRPNExpressionException.TOO_FEW_NUMBER_MESSAGE + "4 +"
         );
     }
@@ -58,7 +58,7 @@ class RPN_CalculatorTest {
     void calculateSubtractionWithPositiveResult() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("6 4 -"), 2);
+            assertEquals(calculator.calculate("6 4 -", " "), 2);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -68,7 +68,7 @@ class RPN_CalculatorTest {
     void calculateSubtractionWithNegativeResult() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("4 6 -"), -2);
+            assertEquals(calculator.calculate("4 6 -", " "), -2);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -78,7 +78,7 @@ class RPN_CalculatorTest {
     void calculateMultiplication() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("6 4 *"), 24);
+            assertEquals(calculator.calculate("6 4 *", " "), 24);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -89,7 +89,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("4 6+"),
+                () -> calculator.calculate("4 6+", " "),
                 InvalidRPNExpressionException.INVALID_OPERATOR_MESSAGE + "6+"
         );
     }
@@ -99,7 +99,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("15 7 1 1 + - / 3 * 2 1 1 + + - 5"),
+                () -> calculator.calculate("15 7 1 1 + - / 3 * 2 1 1 + + - 5", " "),
                 InvalidRPNExpressionException.EXPRESSION_ENDING_WITH_NUMBER_MESSAGE
         );
     }
@@ -108,7 +108,7 @@ class RPN_CalculatorTest {
     void calculateDividingWithWholeNumberResult() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("6 3 /"), 2);
+            assertEquals(calculator.calculate("6 3 /", " "), 2);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -118,7 +118,7 @@ class RPN_CalculatorTest {
     void calculateDividingWithFractionNumberResult() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("3 6 /"), 0.5);
+            assertEquals(calculator.calculate("3 6 /", " "), 0.5);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -128,7 +128,7 @@ class RPN_CalculatorTest {
     void calculateComplexExpressionWithNegativeNumbers() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("15 7 1 1 + - / 3 * 2 1 -1 + + -"), 7);
+            assertEquals(calculator.calculate("15 7 1 1 + - / 3 * 2 1 -1 + + -", " "), 7);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -139,7 +139,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("6 0 /"),
+                () -> calculator.calculate("6 0 /", " "),
                 InvalidRPNExpressionException.DIVIDING_WITH_ZERO_MESSAGE
         );
     }
@@ -150,22 +150,22 @@ class RPN_CalculatorTest {
         assertAll(
                 () -> assertThrows(
                         InvalidRPNExpressionException.class,
-                        () -> calculator.calculate("4 6 @"),
+                        () -> calculator.calculate("4 6 @", " "),
                         InvalidRPNExpressionException.INVALID_OPERATOR_MESSAGE + "6+"
                 ),
                 () -> assertThrows(
                         InvalidRPNExpressionException.class,
-                        () -> calculator.calculate("4 6 A"),
+                        () -> calculator.calculate("4 6 A", " "),
                         InvalidRPNExpressionException.INVALID_OPERATOR_MESSAGE + "6+"
                 ),
                 () -> assertThrows(
                         InvalidRPNExpressionException.class,
-                        () -> calculator.calculate("4 6 k"),
+                        () -> calculator.calculate("4 6 k", " "),
                         InvalidRPNExpressionException.INVALID_OPERATOR_MESSAGE + "6+"
                 ),
                 () -> assertThrows(
                         InvalidRPNExpressionException.class,
-                        () -> calculator.calculate("4 6 ="),
+                        () -> calculator.calculate("4 6 =", " "),
                         InvalidRPNExpressionException.INVALID_OPERATOR_MESSAGE + "6+"
                 )
         );
@@ -175,7 +175,7 @@ class RPN_CalculatorTest {
     void calculateComplexExpressionWithWholeNumberResults() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("15 7 1 1 + - / 3 * 2 1 1 + + -"), 5);
+            assertEquals(calculator.calculate("15 7 1 1 + - / 3 * 2 1 1 + + -", " "), 5);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -185,7 +185,7 @@ class RPN_CalculatorTest {
     void calculateComplexExpressionWithFractionNumberResults() {
         RPN_Calculator calculator = new RPN_Calculator();
         try {
-            assertEquals(calculator.calculate("15 7 1 4 + - / 3 * 2 1 1 + + -"), 18.5);
+            assertEquals(calculator.calculate("15 7 1 4 + - / 3 * 2 1 1 + + -", " "), 18.5);
         } catch (InvalidRPNExpressionException e) {
             fail("Exception should not have been thrown");
         }
@@ -196,7 +196,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("15 7 1 6 + - / 3 * 2 1 1 + + -"),
+                () -> calculator.calculate("15 7 1 6 + - / 3 * 2 1 1 + + -", " "),
                 InvalidRPNExpressionException.DIVIDING_WITH_ZERO_MESSAGE
         );
     }
@@ -206,7 +206,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("15 7 1 1 + - / 3 * 2 1 1 1 + + -"),
+                () -> calculator.calculate("15 7 1 1 + - / 3 * 2 1 1 1 + + -", " "),
                 InvalidRPNExpressionException.TOO_MUCH_NUMBER_MESSAGE
         );
     }
@@ -216,7 +216,7 @@ class RPN_CalculatorTest {
         RPN_Calculator calculator = new RPN_Calculator();
         assertThrows(
                 InvalidRPNExpressionException.class,
-                () -> calculator.calculate("15 7 1 1 + - / 3 * 2 1 + + -"),
+                () -> calculator.calculate("15 7 1 1 + - / 3 * 2 1 + + -", " "),
                 InvalidRPNExpressionException.TOO_FEW_NUMBER_MESSAGE
         );
     }
