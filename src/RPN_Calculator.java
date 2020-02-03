@@ -28,7 +28,7 @@ public class RPN_Calculator {
             command = printMenu(in);
             System.out.println();
             switch (command) {
-                case "1":
+                case "1": // Type in expression and calculate it
                     System.out.println("The expression:");
                     try {
                         double result = rpn.calculate(in.nextLine(), " ");
@@ -37,10 +37,11 @@ public class RPN_Calculator {
                         System.out.println(e.getMessage());
                     }
                     break;
-                case "2":
-                    System.out.println("Type in a whole and valid Reverse Polish Notation expression and the program will calculate it for you.");
+                case "2": // Print out helps for the users
+                    System.out.println("Type in a whole and valid Reverse Polish Notation expression with spaces between the numbers and operators.");
+                    System.out.println("The program will calculate it for you.");
                     System.out.println("If you don't know how to write a Reverse Polish Notation expression, visit the wikipedia page: https://en.wikipedia.org/wiki/Reverse_Polish_notation");
-                case "3":
+                case "3": // Exit
                     System.out.println("Goodbye!");
                     break;
                 default:
